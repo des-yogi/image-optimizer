@@ -30,7 +30,7 @@ gulp.task('webp', function () {
   return gulp.src('src/*.{jpg,jpeg,png,JPG,JPEG,PNG}')
     .pipe(imagemin([
       webp({
-        quality: 80, // 75 default
+        quality: 70, // 75 default
         preset: 'photo' // photo, picture, drawing, icon and text
       })
     ]))
