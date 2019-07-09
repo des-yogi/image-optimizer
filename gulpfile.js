@@ -20,7 +20,7 @@ gulp.task('pngquant', function () {
   return gulp.src('src/*.png')
     .pipe(imagemin([
       pngquant({
-        quality: 85 //так жмет чуть лучше чем tiny-png
+        quality: [0.5, 0.65] //так жмет чуть лучше чем tiny-png
       })
     ]))
     .pipe(gulp.dest('build/'))
