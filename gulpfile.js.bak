@@ -20,7 +20,7 @@ gulp.task('pngquant', function () {
   return gulp.src('src/*.png')
     .pipe(imagemin([
       pngquant({
-        quality: [0.3, 0.8] // требуется сравнение с тини-пнг
+        quality: 85 //так жмет чуть лучше чем tiny-png
       })
     ]))
     .pipe(gulp.dest('build/'))
@@ -45,7 +45,7 @@ gulp.task('mozjpeg', function () {
     .pipe(imagemin([
       mozjpeg({
         progressive: true,
-        quality: 75,
+        quality: 70,
         sample: ['2x1'] //['2x2'] - будет меньше
       })
     ]))
