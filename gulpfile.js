@@ -30,7 +30,7 @@ gulp.task('webp', function () {
   return gulp.src('src/*.{jpg,jpeg,png,JPG,JPEG,PNG}')
     .pipe(imagemin([
       webp({
-        quality: 70, // 75 default
+        quality: 90, // 75 default
         preset: 'photo' // photo, picture, drawing, icon and text
       })
     ]))
@@ -45,7 +45,7 @@ gulp.task('mozjpeg', function () {
     .pipe(imagemin([
       mozjpeg({
         progressive: true,
-        quality: 75,
+        quality: 95,
         sample: ['2x1'] //['2x2'] - будет меньше
       })
     ]))
