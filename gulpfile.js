@@ -27,11 +27,24 @@ gulp.task('pngquant', function () {
 });
 
 gulp.task('webp', function () {
-  return gulp.src('src/*.{jpg,jpeg,png,JPG,JPEG,PNG}')
+  return gulp.src('src/*.{jpg,jpeg,JPG,JPEG,png,PNG}')
     .pipe(imagemin([
       webp({
-        quality: 90, // 75 default
+        quality: 75, // 75 default
         preset: 'photo' // photo, picture, drawing, icon and text
+      })
+    ]))
+    .pipe(rename(function (path) {
+      path.extname = ".webp";
+    }))
+    .pipe(gulp.dest('build/'))
+});
+
+gulp.task('webp-lossless', function () {
+  return gulp.src('src/*.{png,PNG}')
+    .pipe(imagemin([
+      webp({
+        lossless: true // Losslessly encode images
       })
     ]))
     .pipe(rename(function (path) {
@@ -45,7 +58,7 @@ gulp.task('mozjpeg', function () {
     .pipe(imagemin([
       mozjpeg({
         progressive: true,
-        quality: 95,
+        quality: 75,
         sample: ['2x1'] //['2x2'] - будет меньше
       })
     ]))
@@ -80,4 +93,9 @@ gulp.task('gifsicle', function () {
 gulp.task('minify', gulp.series(
   'clean',
   gulp.parallel('pngquant', 'webp', 'mozjpeg', 'svgo', 'gifsicle')
+));
+
+gulp.task('lossless', gulp.series(
+  'clean',
+  gulp.parallel('webp-lossless')
 ));
